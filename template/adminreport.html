@@ -1,0 +1,68 @@
+{% extends 'adminhome.html' %}
+{% block body %}
+<style>
+    td,th{
+        padding: 10px;
+    }
+</style>
+<form method="POST" enctype="multipart/form-data">
+    <center>
+        <br><br><h1>Report</h1><br>
+    {% csrf_token %}
+    <table>
+        <tr><td>Select type</td><td><select class="form-control" name="type">
+            <option>Customer</option>
+            <option>Expert</option>
+            <option>Vehicle</option>
+            <option>Review</option>
+        </select></td></tr>
+        <tr><td>Starting date</td><td><input type="date" class="form-control" name="sdate"></td></tr>
+        <tr><td>Ending date</td><td><input type="date" class="form-control" name="edate"></td></tr>
+        <tr><td></td><td><input type="submit" name="b1" class="btn btn-primary" value="SUBMIT"></td></tr>
+    </table>
+    {% if customer %}
+    <h3 align="center"><b>Customers</b></h3> 
+    <table class="table">
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile</th><th>House</th><th>Place</th><th>District</th><th>State</th><th>Pin</th></tr>
+        {% for d in customer %}
+        <tr><td>{{d.0}}</td><td>{{d.1}}</td><td>{{d.2}}</td><td>{{d.3}}</td><td>{{d.5}}</td><td>{{d.6}}</td><td>{{d.7}}</td><td>{{d.8}}</td><td>{{d.9}}</td></tr>
+        {% endfor %}
+        </table>
+        
+        <input type="submit" onclick="javascript:window.print();" value="Print">
+    {% endif %}
+    {% if expert %}
+    <h3 align="center"><b>Expert</b></h3> 
+    <table class="table">
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile</th><th>Experiance</th><th>Area</th></tr>
+        {% for d in expert %}
+        <tr><td>{{d.0}}</td><td>{{d.1}}</td><td>{{d.2}}</td><td>{{d.3}}</td><td>{{d.4}}</td><td>{{d.5}}</td></tr>
+        {% endfor %}
+        </table>
+        <input type="submit" onclick="javascript:window.print();" value="Print">
+    {% endif %}
+    {% if vehicle %}
+    <h3 align="center"><b>Vehicle</b></h3> 
+    <table class="table">
+        <tr><th>ID</th><th>Name</th><th>CmpID</th><th>Model</th><th>Type</th><th>Fuel</th><th>Torque</th><th>HP</th><th>Colors</th><th>Price</th><th>Image</th></tr>
+        {% for d in vehicle %}
+        <tr><td>{{d.0}}</td><td>{{d.1}}</td><td>{{d.2}}</td><td>{{d.3}}</td><td>{{d.4}}</td><td>{{d.5}}</td><td>{{d.6}}</td><td>{{d.7}}</td><td>{{d.8}}</td><td>{{d.9}}</td><td><img src="../static{{d.12}}" height="150px" width="150px"></td></tr>
+        
+        {% endfor %}
+        </table>
+        <input type="submit" onclick="javascript:window.print();" value="Print">   
+    {% endif %}
+    {% if review %}
+    <h3 align="center"><b>Vehicle</b></h3> 
+    <table class="review">
+        <tr><th>CAR</th><th>REVIEW</th><th>RATING</th><th>DATE</th><th>EXPERT</th></tr>
+        {% for d in data %}
+        <tr><td>{{d.10}}</td><td>{{d.1}}</td><td>{{d.2}}</td><td>{{d.4}}</td><td>{{d.9}}</td></tr>
+        {% endfor %}
+        </table>
+        <input type="submit" onclick="javascript:window.print();" value="Print">   
+    {% endif %}
+</center>
+
+</form>
+{% endblock %}

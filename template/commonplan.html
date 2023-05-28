@@ -1,0 +1,48 @@
+{% extends 'cushome.html' %}
+{% block body %}
+<style>
+    td{
+        padding:10px;
+    }
+    th{
+        background-color: blue;
+        color:white;
+    }
+    </style>
+    <center>
+<form method="POST">
+    <br>
+    <hr><h1>Subscribe a plan</h1><hr>
+    {% csrf_token %}
+    {% if data %}
+    
+    <table style="width: 600px;">
+        <tr>
+            
+            <th>PLAN</th>
+            <th>DURATION IN MONTH</th>
+            <th>RATE</th>
+            <th></th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td><a href="/planselect?id={{d.0}}&amt={{d.3}}">Subscribe</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% endif %}
+</form>
+</center>
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+    }
+</script>
+{% endblock %}

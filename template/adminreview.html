@@ -1,0 +1,18 @@
+{% extends 'adminhome.html' %}
+{% block body %}
+<br>
+<center>
+<hr>
+<h1>Review for approval</h1>
+<hr>
+</center>
+<table class="table">
+<tr><th>CAR</th><th>REVIEW</th><th>RATING</th><th>DATE</th><th>EXPERT</th><th></th></tr>
+{% for d in data %}
+<tr><td>{{d.vid.name}}</td><td>{{d.review}}</td><td>{{d.rating}}</td><td>{{d.date}}</td><td>{{d.exp.name}}</td>
+    {% if d.status == "Submitted" %}
+    <td><a href="/adminreviewmore?id={{d.id}}">View more</a> </td></tr>
+    {% endif %}
+{% endfor %}
+</table>
+{% endblock %}

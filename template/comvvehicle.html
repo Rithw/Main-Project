@@ -1,0 +1,17 @@
+{% extends 'companyhome.html' %}
+{% block body %}
+<br>
+<center>
+<hr>
+<h1>View Vehicle</h1><hr>
+</center>
+<div >
+<table class="table">
+<tr><th>ID</th><th>Name</th><th>CmpID</th><th>Model</th><th>Type</th><th>Fuel</th><th>Torque</th><th>HP</th><th>Colors</th><th>Price</th><th>Image</th></tr>
+{% for d in data %}
+<tr><td>{{d.id}}</td><td>{{d.name}}</td><td>{{d.cmp.name}}</td><td>{{d.model}}</td><td>{{d.type}}</td><td>{{d.fuel}}</td><td>{{d.torque}}</td><td>{{d.hp}}</td><td>{{d.colors}}</td><td>{{d.price}}</td><td><img src="../static/media/{{d.image}}" height="150px" width="150px"></td>   </tr>
+
+{% endfor %}
+</table>
+</div>
+{% endblock %}

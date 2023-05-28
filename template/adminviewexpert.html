@@ -1,0 +1,15 @@
+{% extends 'adminhome.html' %}
+{% block body %}
+<br>
+<center>
+<hr>
+<h1>View Expert</h1>
+<hr>
+</center>
+<table class="table">
+<tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile</th><th>Area</th></tr>
+{% for d in data %}
+<tr><td>{{d.id}}</td><td>{{d.name}}</td><td>{{d.email}}</td><td>{{d.con}}</td><td>{{d.exp}}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}

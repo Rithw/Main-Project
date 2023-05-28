@@ -1,0 +1,186 @@
+{% extends 'cushome.html' %}
+{% block body %}
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      var data1 = parseInt(`{{score.0}}`);
+      var data2 = parseInt(`{{score.1}}`);
+    //   alert(data1)    
+    //   alert(data2)
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Positive',   data1 ],
+        
+          ['Negative',    data2],
+        ]);
+
+        var options = {
+          title: 'Review Classification'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+<style>
+    td,th{
+        padding: 20px;
+    }
+</style>
+<br>
+<center>
+    <hr>
+<h1>New arrivals</h1>
+
+<hr>
+<div >
+<table style="width: 700px;">
+    {% if d %}
+    <tr>
+        <td>
+            <a href="../static/media/{{d.image}}" target="_blank">
+                <img width="300px" height="200px" style="border-radius: 50%;" src="../static/media/{{d.image}}">
+            </a>
+        </td>
+        <td>
+            <h1>{{d.name}}</h1>
+            <p>Model : {{d.model}}</p>
+            <p>Type : {{d.type}}</p>
+            <p>Fuel : {{d.fuel}}</p>
+            <p>Torque : {{d.torque}}</p>
+            <p>HP : {{d.hp}}</p>
+            <p>Colors : {{d.colors}}</p>
+            <p>Ground clearance : {{d.groundcl}}</p>
+            <p>Tyre size : {{d.tyre}}</p>
+            <p>Price : Rs.{{d.price}}/-</p>
+            <p>Total reviews: {{count}}</p>
+        </td>
+    </tr>
+    {% endif %}
+</table>
+
+
+
+{% if count > 0 %}
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+        
+</div>
+<table>
+    <tr>
+<td><label>Engine and performance:</label></td>
+<td><progress id="file" value="{{engine}}" max="5"> {{engine}} </progress></td>
+    </tr>
+    <tr>
+<td><label>Ride and handling:</label></td>
+<td><progress id="file" value="{{ride}}" max="5"> {{ride}} </progress></td>
+</tr>
+<tr>
+    <td>
+<label>Interior space and comfort:</label></td>
+<td>
+<progress id="file" value="{{interior}}" max="5"> {{interior}} </progress></td>
+</tr>
+<tr>
+    <td>
+<label>Features and equipment:</label></td>
+<td>
+<progress id="file" value="{{feature}}" max="5"> {{feature}} </progress>
+</td>
+</tr>
+</table>
+{% endif %}
+
+
+
+<table>
+    <tr>
+        <th>Expert</th>
+        
+        <th>Engine</th>
+        <th>Rating</th>
+       
+        
+        <th>Ride and handling</th>
+        <th>Rating</th>
+       
+        
+        <th>Interior</th>
+        <th>Rating</th>
+      
+        
+        <th>Features</th>
+        <th>Rating</th>
+        
+        
+    </tr>
+{% for d in data %}
+<tr> <td>{{d.exp.name}}</td>
+    {% for r in rev %}
+   {% if d.id == r.rid.id %}
+    
+    <td>{{r.a}}</td>
+    <td>{{r.rating}}/10</td>
+    {% endif %}
+    {% endfor %}
+    <td><a href="/req?id={{d.exp.id}}">Request</a></td>
+</tr>
+    {% endfor %}
+
+</table>
+
+
+
+</div>
+</center>
+
+<!-- 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+     <script type="text/javascript">
+ 
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        
+ 
+  
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Good reviews', score],
+          ['Bad Reviews', score],
+         
+        ]);
+
+        // Set chart options
+        var options = {'title':'Review summary',
+                       'width':400,
+                       'height':300};
+
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+      
+
+    </script>  -->
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'experthome.html' %}
+{% block body %}
+<style>
+    td,th{
+        padding: 20px;
+    }
+</style>
+<br>
+<center>
+    <hr>
+<h1>New arrivals</h1>
+<hr>
+<div >
+<table style="width: 700px;">
+    {% if d %}
+    <tr>
+        <td>
+            <a href="../static/media/{{d.image}}" target="_blank">
+                <img width="300px" height="200px" style="border-radius: 50%;" src="../static/media/{{d.image}}">
+            </a>
+        </td>
+        <td>
+            <h1>{{d.name}}</h1>
+            <p>Model : {{d.model}}</p>
+            <p>Type : {{d.type}}</p>
+            <p>Fuel : {{d.fuel}}</p>
+            <p>Torque : {{d.torque}}</p>
+            <p>HP : {{d.hp}}</p>
+            <p>Colors : {{d.colors}}</p>
+            <p>Ground clearance : {{d.groundcl}}</p>
+            <p>Tyre size : {{d.tiresize}}</p>
+            <p>Price : Rs.{{d.price}}/-</p>
+            <p><a href="/expertreview?id={{d.id}}" style="color:blue;"> Add review... </a></p>
+        </td>
+    </tr>
+    {% endif %}
+</table>
+</div>
+</center>
+{% endblock %}

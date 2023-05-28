@@ -1,0 +1,18 @@
+{% extends 'cushome.html' %}
+{% block body %}
+<h3>Search Vehicle</h3>
+<form method="POST">
+    {% csrf_token %}
+<label>Name</label><input type="text" name="t1" id=""><input type="submit" value="Search">
+</form>
+<div >
+
+<table class="table">
+<tr><th>ID</th><th>Name</th><th>CmpID</th><th>Model</th><th>Type</th><th>Fuel</th><th>Torque</th><th>HP</th><th>Colors</th><th>Price</th><th>Image</th></tr>
+{% for d in data %}
+<tr><td>{{d.0}}</td><td>{{d.1}}</td><td>{{d.2}}</td><td>{{d.3}}</td><td>{{d.4}}</td><td>{{d.5}}</td><td>{{d.6}}</td><td>{{d.7}}</td><td>{{d.8}}</td><td>{{d.9}}</td><td><img width="100px" src="../static{{d.12}}"></td></tr>
+
+{% endfor %}
+</table>
+</div>
+{% endblock %}

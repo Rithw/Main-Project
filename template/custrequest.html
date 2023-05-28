@@ -1,0 +1,17 @@
+{% extends 'cushome.html' %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    <table class="table">
+<tr><td>Expert</td><td><select name="t3">
+    {% for d in data %}
+    <option value="{{d.1}}">{{d.1}}</option>
+    {% endfor %}
+</select></td></tr>
+
+<tr><td>Request</td><td><input type="text" name="t1"></td></tr>
+<tr><td>Discription</td><td><input type="text"  name="t2"></td></tr>
+<tr><td></td><td><input type="submit" name="b1" value="Submit"></td></tr>
+    </table>
+</form>
+{% endblock %}

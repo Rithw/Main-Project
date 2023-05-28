@@ -1,0 +1,16 @@
+{% extends 'experthome.html' %}
+{% block body %}
+<br>
+<center>
+<hr><h1>View Queries</h1><hr>
+</center>
+<div>
+<table class="table">
+<tr><th>ID</th><th>Customer Name</th><th>Request</th><th>Date</th><th>Description</th></tr>
+{% for d in data %}
+<tr><td>{{d.0}}</td><td>{{d.1}}</td><td>{{d.2}}</td><td>{{d.3}}</td><td>{{d.4}}</td><td><a href="/expertreply?id={{d.0}}">Reply</a></td></tr>
+
+{% endfor %}
+</table>
+</div>
+{% endblock %}

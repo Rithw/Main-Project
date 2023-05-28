@@ -1,0 +1,52 @@
+{% extends 'adminhome.html' %}
+{% block body %}
+<style>
+    td{
+        padding:10px;
+    }
+    th{
+        background-color: blue;
+        color:white;
+    }
+    </style>
+    <center>
+<form method="POST">
+    <br>
+    <hr><h1>Customer Plan</h1><hr>
+    {% csrf_token %}
+    <table >
+        <tr><td>Plan Name</td><td><input type="text" class="form-control" required  name="plan"></td></tr>
+        <tr><td>Duration in month</td><td><input type="number" class="form-control" required  name="duration"></td></tr>
+        <tr><td>Rate</td><td><input type="number" class="form-control" required  name="rate"></td></tr>
+<tr><td></td><td><input type="submit" name="b1" class="btn btn-primary" value="SUBMIT"></td></tr>
+    </table>
+    {% if data %}
+    
+    <table style="width: 600px;">
+        <tr>
+            <th>ID</th>
+            <th>PLAN</th>
+            <th>DURATION IN MONTH</th>
+            <th>RATE</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% endif %}
+</form>
+</center>
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+    }
+</script>
+{% endblock %}

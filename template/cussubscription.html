@@ -1,0 +1,54 @@
+{% extends 'cushome.html' %}
+{% block body %}
+<style>
+    td{
+        padding:10px;
+    }
+    th{
+        background-color: blue;
+        color:white;
+    }
+    </style>
+    <center>
+<form method="POST">
+    <br>
+    <hr><h1>Subscription</h1><hr>
+    {% csrf_token %}
+   
+    {% if data %}
+    
+    <table style="width: 600px;">
+        <tr>
+            <th>SUBSCRIPTION ID</th>
+            <th>PLAN</th>
+            <th>DURATION IN MONTH</th>
+            <th>RATE</th>
+            <th>SUBSCRIPTION DATE</th>
+            <th>EXPIRY DATE</th>
+            <th>STATUS</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.5}}</td>
+            <td>{{d.6}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+<h3><a href="/commonplan">Click here to subscribe</a></h3>
+    {% endif %}
+</form>
+</center>
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+    }
+</script>
+{% endblock %}

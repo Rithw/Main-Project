@@ -1,0 +1,35 @@
+{% extends 'experthome.html' %}
+{% block body %}
+<style>
+    td,th{
+        padding: 20px;
+    }
+</style>
+<br>
+<center>
+    <hr>
+<h1>New arrivals</h1>
+<hr>
+<div >
+<table style="width: 700px;">
+    {% for d in data %}
+    <tr>
+        <td>
+            <a href="../static/media/{{d.image}}" target="_blank">
+                <img width="300px" height="200px" style="border-radius: 50%;" src="../static/media/{{d.image}}">
+            </a>
+        </td>
+        <td>
+            <h1>{{d.name}}</h1>
+            <p>Model : {{d.model}}</p>
+            <p>Type : {{d.type}}</p>
+            <p>Fuel : {{d.fuel}}</p>
+            <p>Price : Rs.{{d.price}}/-</p>
+            <p><a href="/expcardetails?id={{d.id}}" style="color:blue;"> View more... </a></p>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+</center>
+{% endblock %}

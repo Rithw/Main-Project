@@ -1,0 +1,26 @@
+{% extends 'experthome.html' %}
+{% block body %}
+
+<div>
+    <center>
+        <br>
+        <hr><h1>My requests</h1>
+    </center>
+<table class="table">
+<tr><th>ID</th><th>Customer</th><th>Status</th><th>Action</th></tr>
+{% for d in data %}
+<tr><td>{{d.id}}</td><td>{{d.user.name}}</td><td>{{d.status}}</td>
+    
+    {% if d.status == "Requested" %}
+    
+    <td><a href="/expapp?id={{d.id}}">Approve</a></td>
+    <td><a href="/exprem?id={{d.id}}">Remove</a></td>
+    {% else %}
+    <td></td>
+    <td><a href="/sfChatPer?email={{d.user.email}}">Chat</a></td>
+    {% endif %}
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

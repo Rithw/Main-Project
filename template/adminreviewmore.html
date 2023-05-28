@@ -1,0 +1,23 @@
+{% extends 'adminhome.html' %}
+{% block body %}
+<style>
+    td{
+        padding: 10px;
+    }
+</style>
+<br>
+<center>
+<hr>
+<h1>Review for approval</h1>
+<hr>
+</center>
+<table style="margin: 100px;">
+
+{% for d in data %}
+<tr><td><h3>{{d.q.q}}</h3></td></tr><tr><td>{{d.a}}</td></tr><tr><td>Rating : {{d.rating}}/5</td></tr>
+
+{% endfor %}
+<tr><td><h4><a style="color:blue;"  href="/adminupdatereview?id={{rid}}">Approve Review</a></h4></td></tr>
+</table>
+
+{% endblock %}
